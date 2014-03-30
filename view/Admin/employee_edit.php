@@ -1,3 +1,10 @@
+<?php session_start();
+@$user = $_SESSION['sesion'];
+//session_destroy();
+if (!isset($user) && empty($user)) {
+    header('Location: http://localhost/SIE_V2/view/index.php');
+}else{
+?>
 <!doctype html>
 <html lang="es">
 <head>
@@ -8,12 +15,42 @@
         <link href="../../css/bootstrap-responsive.css" rel="stylesheet">
 </head>
 <body onload="Combos(subdirectorate);">
+    <?php
+        require_once '../general/_top.php';
+        print '<br><br>';
+        $emp = $_GET['id'];
+        if (isset($emp) && !empty($emp)) {
+            require_once '../../controller/database/consultas.php';
+            $consulta = new Consulta();
+            $consulta->setConsulta("SELECT * FROM sie.employees WHERE document_number like '$emp'");
+            $employ = mysql_fetch_array($consulta->getConsulta());
+            print $employ ['ONE_FIRST_NAME']." - ".$employ['ONE_LAST_NAME']." - ".$employ['DOCUMENT_NUMBER'];
+            $doc = $employ['DOCUMENT_NUMBER'];
+            
+            //Querty Subdirectorates all
+            $consulta->setConsulta("SELECT * FROM sie.subdirectorates ORDER BY subdirectorate_name");
+            $subdAll = $consulta->getConsulta();
+            //$allSubdirectorate = mysql_fetch_array($subdAll);
+            
+            //Querty Subdirectorate
+            $consulta->setConsulta("SELECT * FROM sie.subdirectorates s where
+                s.subdirectorate_id like $employ[SUBDIRECTORATE_ID]");
+            $subd = $consulta->getConsulta();
+            $subdirectorate = mysql_fetch_array($subd);
+
+            //Querty job
+            $consulta->setConsulta("SELECT * FROM sie.jobs s where
+                s.job_id like $employ[JOB_ID]");
+            $j = $consulta->getConsulta();
+            $job = mysql_fetch_array($j);
+        }
+    ?>
 	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class="container span2"></div>
 			<!--============columna Formulario==================-->
 			<div class="container span8">
-				<form class="form-horizontal" action="EmployeeSave.jsp" method="post">
+                            <form class="form-horizontal" action="http://localhost/SIE_V2/controller/Employee/employee_save.php" method="post">
 					<legend>
 						<div class="row">
 							<div class="span4 offset1">Registrar Datos</div>
@@ -25,11 +62,11 @@
 							<div class="control-group">
 								<div class="span6">
 									<input type="text" class="input-block-level" autocomplete="off" id="oneFirstName" placeholder="Primer Nombre" maxlength="45" name="oneFirstName" required
-									value=""/>	
+                                                                               value="<?php if (isset($doc) && !empty($doc)) { print $employ['ONE_FIRST_NAME'];}?>"/>	
 								</div>
 								<div class="span6">
 									<input type="text" class="input-block-level" autocomplete="off" id="twoFirstName" placeholder="Segundo Nombre" maxlength="45" name="twoFirstName"
-									value=""/>	
+									value="<?php if (isset($doc) && !empty($doc)) { print $employ['TWO_FIRST_NAME'];}?>"/>	
 								</div>
 							</div>
 						</div>
@@ -38,11 +75,11 @@
 							<div class="control-group">
 								<div class="span6">
 									<input type="text" class="input-block-level" autocomplete="off" id="oneLastName" placeholder="Primer Apellido" maxlength="45" name="oneLastName" required
-									value=""/>	
+									value="<?php if (isset($doc) && !empty($doc)) { print $employ['ONE_LAST_NAME'];}?>"/>	
 								</div>
 								<div class="span6">
 									<input type="text" class="input-block-level" autocomplete="off" id="twoLastName" placeholder="Segundo Apellido" maxlength="45" name="twoLastName" required
-									value=""/>	
+									value="<?php if (isset($doc) && !empty($doc)) { print $employ['TWO_LAST_NAME'];}?>"/>	
 								</div>
 							</div>
 						</div>
@@ -53,13 +90,13 @@
 						<div class="span5 offset1">
 							Dirección:<br>
 							<input type="text" class="input-block-level" autocomplete="off" id="streetAddress" placeholder="tipo numero1 - numero 2 barrio" maxlength="45" name="streetAddress" required
-							value=""
+							value="<?php if (isset($doc) && !empty($doc)) { print $employ['STREET_ADDRESS'];}?>"
 							/>
 						</div>
 						<div class="span5">
 							Ciudad de Residencia:<br>
 							<input type="text" class="input-block-level" id="cityResident" placeholder="Ciudad" maxlength="45" name="cityResident" required
-							value=""
+							value="<?php if (isset($doc) && !empty($doc)) { print $employ['CITY'];}?>"
 							/>
 						</div>
 						<div class="span1"></div>
@@ -71,13 +108,13 @@
 							Teléfono:<br>
 							<input type="text" class="input-block-level" autocomplete="off" id="phoneNumber" placeholder="09874540.. o 31241401.." maxlength="10"  
 							name="phoneNumber"  pattern="[0-9]{10}" required
-							value=""
+							value="<?php if (isset($doc) && !empty($doc)) { print $employ['PHONE_NUMBER'];}?>"
 							/>
 						</div>
 						<div class="span5">
 							Correo Electrónico:<br>
 							<input type="email" class="input-block-level" autocomplete="off" id="email" placeholder="ejemplo@ejemplo.com" maxlength="45" name="email" required
-							value=""
+							value="<?php if (isset($doc) && !empty($doc)) { print $employ['EMAIL'];}?>"
 							/>
 						</div>
 						<div class="span1"></div>
@@ -88,19 +125,23 @@
 						<div class="span3 offset1">
 							Tipo de Documento:<br>
 							<select name="documentType" class="input-block-level">
-								<option value="CEDULA CIUDADANÍA">CEDULA CIUDADANÍA</option>
-								<option value="CEDULA EXTRANJERÍA">CEDULA EXTRANJERÍA</option>
+								<option value="CEDULA CIUDADANÍA" 
+                                                                        <?php if (isset($doc) && !empty($doc) && $employ['DOCUMENT_TYPE'] == "CEDULA CIUDADANÍA") {print 'selected';}?>
+                                                                        >CEDULA CIUDADANÍA</option>
+								<option value="CEDULA EXTRANJERÍA"
+                                                                        <?php if (isset($doc) && !empty($doc) && $employ['DOCUMENT_TYPE'] == "CEDULA EXTRANJERÍA") {print 'selected';}?>
+                                                                        >CEDULA EXTRANJERÍA</option>
 							</select>
 						</div>
 						<div class="span4">
 							Ciudad de Expedición:<br>
 							<input type="text" class="input-block-level" id="documentCity" placeholder="Ciudad(Departamento)" maxlength="45" name="documentCity" required
-							value=""/>
+							value="<?php if (isset($doc) && !empty($doc)) { print $employ['DOCUMENT_CITY'];}?>"/>
 						</div>
 						<div class="span3">
 							Número de Documento:<br>
 							<input type="text" class="input-block-level" autocomplete="off" id="documentNumber" placeholder="N° documento de identidad" maxlength="25" name="documentNumber" required
-							value=""/>
+							value="<?php if (isset($doc) && !empty($doc)) { print $employ['DOCUMENT_NUMBER'];}?>"/>
 						</div>
 						<div class="span1"></div>
 					</div>
@@ -208,10 +249,18 @@
 						<div class="span5 offset1">
 							Subdirección:<br>
 							<select id="subdirectorate" name="subdirectorate" class="input-block-level" required onchange="Combos(this)">
-								<option></option>
-								<option value="">
-									
-								</option>
+								<option>Seleccione</option>
+                                                                <?php 
+                                                                while ($row = mysql_fetch_array($subdAll)){?>
+                                                                    <option value="<?php print $row['SUBDIRECTORATE_ID'];?>"
+                                                                         <?php if (isset($doc) && !empty($doc)) {
+                                                                             if ($employ['SUBDIRECTORATE_ID'] == $row['SUBDIRECTORATE_ID']) { print 'selected';}
+                                                                         }?>   
+                                                                            >
+                                                                        <?php print $row['SUBDIRECTORATE_NAME'];?>
+                                                                    </option>
+                                                                <?php } ?>
+								
 							</select>
 						</div>
 						<div class="span5">
@@ -276,7 +325,7 @@
 								<button type="submit" class="btn btn-primary input-block-level">Aceptar</button>	
 							</div>
 							<div class="span6">
-								<a href="employeeList.jsp" class="btn btn-default input-block-level" >Cancelar</a>	
+                                                            <a href="http://localhost/SIE_V2/view/principal.php" class="btn btn-default input-block-level" >Cancelar</a>	
 							</div>
 							
 							
@@ -293,3 +342,4 @@
     <script type="text/javascript" src="../../js/bootstrap.js"></script>
 </body>
 </html>
+<?php } ?>

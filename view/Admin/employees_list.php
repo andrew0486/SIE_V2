@@ -1,12 +1,9 @@
-<?php
-        
-        
-        
-        
-
-   //while ($reg = mysql_fetch_array($consulta)){
-     //   echo $reg['DOCUMENT_NUMBER']." - ".$reg['ONE_FIRST_NAME']." ".$reg['TWO_FIRST_NAME']." ".$reg['ONE_LAST_NAME']." ".$reg['TWO_LAST_NAME']."<br>";
-   //}   
+<?php session_start();
+@$user = $_SESSION['sesion'];
+//session_destroy();
+if (!isset($user) && empty($user)) {
+    header('Location: http://localhost/SIE_V2/view/index.php');
+}else{
 ?>
 <!DOCTYPE html>
 <html lang="ESP">
@@ -18,6 +15,10 @@
 <link href="../../css/bootstrap-responsive.css" rel="stylesheet">
 </head>
 <body>
+    <?php 
+        require_once '../general/_top.php';
+        print '<br><br>';
+    ?>
 	<jsp:include page="_top.jsp"></jsp:include>
 	<jsp:include page="_heroUnit.jsp"></jsp:include>
 	<div class="container-fluid">
@@ -93,7 +94,7 @@
                                                             <?php print $estado;?>
 							</td>
 							<td>
-								<a href='../../view/employee_edit.php?id=$reg[DOCUMENT_NUMBER]' class='btn btn-primary btn-small'>Editar</a>
+								<a href="http://localhost/SIE_V2/view/Admin/employee_edit.php?id=<?php print $reg['DOCUMENT_NUMBER'];?>" class='btn btn-primary btn-small'>Editar</a>
 							</td -->
 					<!--%
 						} //end for 
@@ -105,7 +106,7 @@
 		</div>
 		<!--% if (administrator != null){ %-->
 		<div class="row-fluid">
-                    <a href="employee_edit.php" class="btn btn-primary "><img alt="Prev" src="../../img/glyphicons/glyphicons_006_user_add.png" height="30" width="30"> <strong>Nuevo !</strong></a>
+                    <a href="http://localhost/SIE_V2/view/Admin/employee_edit.php" class="btn btn-primary "><img alt="Prev" src="../../img/glyphicons/glyphicons_006_user_add.png" height="30" width="30"> <strong>Nuevo !</strong></a>
 		</div>
 		<!--% }%-->
 	</div>
@@ -116,3 +117,4 @@
 	<script type="text/javascript" src="../../js/bootstrap.js"></script>
 </body>
 </html>
+<?php } ?>

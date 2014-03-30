@@ -2,7 +2,7 @@
 @$user = $_SESSION['sesion'];
 //session_destroy();
 if (isset($user) && !empty($user)) {
-    header('Location: principal.php');
+    header('Location: http://localhost/SIE_V2/view/principal.php');
 }else{
 ?>
 <!doctype html>

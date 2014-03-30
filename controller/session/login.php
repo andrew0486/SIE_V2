@@ -16,7 +16,7 @@
        where document_number like '$userName'
        and password like '$password'
        ORDER BY one_first_name, two_last_name, one_first_name, two_first_name");
-
+   
    //while ($reg = mysql_fetch_array($datos)){
    //     echo $reg['DOCUMENT_NUMBER']." - ".$reg['ONE_FIRST_NAME']." ".$reg['TWO_FIRST_NAME']." ".$reg['ONE_LAST_NAME']." ".$reg['TWO_LAST_NAME']."<br>";
    //}
