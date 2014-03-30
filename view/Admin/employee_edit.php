@@ -13,10 +13,12 @@ if (!isset($user) && empty($user)) {
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../../css/bootstrap.css">
         <link href="../../css/bootstrap-responsive.css" rel="stylesheet">
+        <script type="text/javascript" language="javascript" src="../../js/ajax.js"></script>
 </head>
 <body onload="Combos(subdirectorate);">
     <?php
         require_once '../general/_top.php';
+        print '<br><br>';
         print '<br><br>';
         $emp = $_GET['id'];
         if (isset($emp) && !empty($emp)) {
@@ -24,7 +26,7 @@ if (!isset($user) && empty($user)) {
             $consulta = new Consulta();
             $consulta->setConsulta("SELECT * FROM sie.employees WHERE document_number like '$emp'");
             $employ = mysql_fetch_array($consulta->getConsulta());
-            print $employ ['ONE_FIRST_NAME']." - ".$employ['ONE_LAST_NAME']." - ".$employ['DOCUMENT_NUMBER'];
+            print $employ ['ONE_FIRST_NAME']." - ".$employ['ONE_LAST_NAME']." - ".$employ['ACTIVE_STATE'];
             $doc = $employ['DOCUMENT_NUMBER'];
             
             //Querty Subdirectorates all
@@ -33,16 +35,17 @@ if (!isset($user) && empty($user)) {
             //$allSubdirectorate = mysql_fetch_array($subdAll);
             
             //Querty Subdirectorate
-            $consulta->setConsulta("SELECT * FROM sie.subdirectorates s where
+            /*$consulta->setConsulta("SELECT * FROM sie.subdirectorates s where
                 s.subdirectorate_id like $employ[SUBDIRECTORATE_ID]");
             $subd = $consulta->getConsulta();
             $subdirectorate = mysql_fetch_array($subd);
+            $_SESSION['emp_edit_subd']=$employ['SUBDIRECTORATE_ID'];*/
 
             //Querty job
             $consulta->setConsulta("SELECT * FROM sie.jobs s where
                 s.job_id like $employ[JOB_ID]");
-            $j = $consulta->getConsulta();
-            $job = mysql_fetch_array($j);
+            $job = $consulta->getConsulta();
+            //$job = mysql_fetch_array($j);
         }
     ?>
 	<div class="container-fluid">
@@ -50,7 +53,7 @@ if (!isset($user) && empty($user)) {
 			<div class="container span2"></div>
 			<!--============columna Formulario==================-->
 			<div class="container span8">
-                            <form class="form-horizontal" action="http://localhost/SIE_V2/controller/Employee/employee_save.php" method="post">
+                            <form class="form-horizontal" name="form_edit" action="" method="post">
 					<legend>
 						<div class="row">
 							<div class="span4 offset1">Registrar Datos</div>
@@ -248,14 +251,14 @@ if (!isset($user) && empty($user)) {
 					<div class="row">
 						<div class="span5 offset1">
 							Subdirección:<br>
-							<select id="subdirectorate" name="subdirectorate" class="input-block-level" required onchange="Combos(this)">
-								<option>Seleccione</option>
+                                                        <select id="subdirectorate" name="subdirectorate" class="input-block-level" required onchange="from(document.form_edit.subdirectorate.value, 'manager', '../../controller/Employee/managerSelect.php')">
+                                                            <option value="">Seleccione</option>
                                                                 <?php 
                                                                 while ($row = mysql_fetch_array($subdAll)){?>
                                                                     <option value="<?php print $row['SUBDIRECTORATE_ID'];?>"
                                                                          <?php if (isset($doc) && !empty($doc)) {
                                                                              if ($employ['SUBDIRECTORATE_ID'] == $row['SUBDIRECTORATE_ID']) { print 'selected';}
-                                                                         }?>   
+                                                                             }?>
                                                                             >
                                                                         <?php print $row['SUBDIRECTORATE_NAME'];?>
                                                                     </option>
@@ -263,13 +266,10 @@ if (!isset($user) && empty($user)) {
 								
 							</select>
 						</div>
-						<div class="span5">
+						<div class="span5" id="mydiv">
 							Jefe Inmediato o Supervisor:<br>
 							<select id="manager" name="manager" class="input-block-level">
-								<option value=""></option>
-								<option value="<%= listEmployees.get(i).getEmployeeId()%>">
-									
-								</option>
+								<option value="">Seleccione</option>
 							</select>
 						</div>
 						<div class="span1"></div>
@@ -280,13 +280,13 @@ if (!isset($user) && empty($user)) {
 						<div class="span5 offset1">
 							Fecha de Incio de Contrato:<br>
 							<input type="date" class="input-block-level" id="hireDate" placeholder="Tunja(Bayacá)" maxlength="45" name="hireDate" required
-							value=""/>
+							value="<?php if (isset($doc) && !empty($doc)) { print $employ['HIRE_DATE'];}?>"/>
 							
 						</div>
 						<div class="span5">
 							Fecha de Finalizacion de Contrato:<br>
 							<input type="date" class="input-block-level" id="endDate" placeholder="Tunja(Bayacá)" maxlength="45" name="endDate"
-							value=""/>
+							value="<?php if (isset($doc) && !empty($doc)) { print $employ['END_DATE'];}?>"/>
 						</div>
 						<div class="span1"></div>
 					</div>
@@ -298,9 +298,16 @@ if (!isset($user) && empty($user)) {
 							<div class="control-group">
 								<div class="span8">
 									<select  name="job" class="input-block-level">
-										<option value="">
-											
-										</option>
+                                                                            <?php 
+                                                                            while ($row1 = mysql_fetch_array($job)){?>
+										<option value="<?php print $row1['JOB_ID'];?>"
+                                                                                    <?php if (isset($doc) && !empty($doc)) {
+                                                                                        if ($employ['JOB_ID'] == $row1['JOB_ID']) { print 'selected';}
+                                                                                        }?>
+                                                                                       >
+                                                                                   <?php print $row1['JOB_TITLE'];?>
+                                                                               </option>
+                                                                            <?php } ?>
 									</select>
 								</div>
 								<div class="span4">
@@ -311,8 +318,8 @@ if (!isset($user) && empty($user)) {
 						<div class="span5">
 							Estado Funcionario:<br>
 							<select class="input-block-level" name="activeState">
-								<option value="0">INACTIVO</option>
-								<option value="1">ACTIVO</option>
+								<option value="0" <?php if (isset($doc) && !empty($doc) && $employ['ACTIVE_STATE'] == 0 ) { print 'selected';} ?>>INACTIVO</option>
+								<option value="1" <?php if (isset($doc) && !empty($doc) && $employ['ACTIVE_STATE'] == 1 ) { print 'selected';} ?>>ACTIVO</option>
 							</select>
 						</div>
 						<div class="span1"></div>
