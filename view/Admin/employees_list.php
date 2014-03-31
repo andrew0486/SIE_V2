@@ -21,28 +21,28 @@ if (!isset($user) && empty($user)) {
     ?>
 	<jsp:include page="_top.jsp"></jsp:include>
 	<jsp:include page="_heroUnit.jsp"></jsp:include>
-	<div class="container-fluid">
+	<div class="container">
 		<div class="row-fluid">
-			<table class="table table-striped table-hover-green">
+			<table class="table table-striped table-hover-green well">
 				<thead>
 					<tr>
-						<td style ="aligne: center;"><h4>PRIMER APELLIDO</h4></td>
-						<td aligne = 'center'><h4>SEGÚNDO APELLIDO</h4></td>
-						<td aligne = 'center'><h4>PRIMER NOMBRE</h4></td>
-                                                <td aligne = 'center'><h4>SEGÚNDO NOMBRE</h4></td>
+						<td style ="aligne: center;"><strong>PRIMER APELLIDO</strong></td>
+						<td aligne = 'center'><strong>SEGÚNDO APELLIDO</strong></td>
+						<td aligne = 'center'><strong>PRIMER NOMBRE</strong></td>
+                                                <td aligne = 'center'><strong>SEGÚNDO NOMBRE</strong></td>
 						<!--% if (administrator != null){ %-->
-						<td><h4>TIPO DOCUMENTO</h4></td>
-						<td><h4>NUMERO DOCUMENTO</h4></td>
-						<td><h4>CIUDAD EXPEDICIÓN</h4></td>
-						<td><h4>DIRECCIÓN</h4></td>
+						<td><strong>TIPO DOCUMENTO</strong></td>
+						<td><strong>NÚMERO DOCUMENTO</strong></td>
+						<td><strong>CIUDAD EXPEDICIÓN</strong></td>
+						<td><strong>DIRECCIÓN</strong></td>
 						<!--% }%-->
-						<td><h4>TELEFÓNO</h4></td>
-						<td style = "aligne: center; "><h4>EMAIL</h4></td>
-						<td><h4>SUBDIRECCIÓN</h4></td>
-						<td><h4>PROFESIÓN</h4></td>
+						<td><strong>TELÉFONO</strong></td>
+						<td style = "aligne: center; "><strong>EMAIL</strong></td>
+						<td><strong>SUBDIRECCIÓN</strong></td>
+						<td><strong>PROFESIÓN</strong></td>
 						<!--% if (administrator != null){ %-->
-						<td><h4>ESTADO</h4></td>
-						<td><h4>EDICIÓN</h4></td>
+						<td><strong>ESTADO</strong></td>
+						<td><strong>EDICIÓN</strong></td>
 						<!--% }%-->
 					</tr>
 				</thead>
@@ -106,7 +106,7 @@ if (!isset($user) && empty($user)) {
 		</div>
 		<!--% if (administrator != null){ %-->
 		<div class="row-fluid">
-                    <a href="http://localhost/SIE_V2/view/Admin/employee_edit.php" class="btn btn-primary "><img alt="Prev" src="../../img/glyphicons/glyphicons_006_user_add.png" height="30" width="30"> <strong>Nuevo !</strong></a>
+                    <a href="http://localhost/SIE_V2/view/Admin/employee_edit.php" class="btn btn-primary "><img alt="Prev" src="../../img/glyphicons/glyphicons_006_user_add.png" height="30" width="30"> <strong>Nuevo Funcionario</strong></a>
 		</div>
 		<!--% }%-->
 	</div>
