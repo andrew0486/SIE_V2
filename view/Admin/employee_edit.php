@@ -19,32 +19,41 @@ if (!isset($user) && empty($user)) {
     <?php
         require_once '../general/_top.php';
         print '<br><br>';
-        print '<br><br>';
-        $emp = $_GET['id'];
+
+        @$emp = $_GET['id'];
+        require_once '../../controller/database/consultas.php';
+        $consulta = new Consulta();
+        
+        //Querty Subdirectorates all
+        $consulta->setConsulta("SELECT * FROM sie.subdirectorates ORDER BY subdirectorate_name");
+        $subdAll = $consulta->getConsulta();
+        //$allSubdirectorate = mysql_fetch_array($subdAll);
+        
+        //Querty job
+        $consulta->setConsulta("SELECT * FROM sie.jobs");
+        $job = $consulta->getConsulta();
+        //$job = mysql_fetch_array($j);
+        
         if (isset($emp) && !empty($emp)) {
-            require_once '../../controller/database/consultas.php';
-            $consulta = new Consulta();
+            
             $consulta->setConsulta("SELECT * FROM sie.employees WHERE document_number like '$emp'");
             $employ = mysql_fetch_array($consulta->getConsulta());
-            print $employ ['ONE_FIRST_NAME']." - ".$employ['ONE_LAST_NAME']." - ".$employ['ACTIVE_STATE'];
+            //print $employ ['ONE_FIRST_NAME']." - ".$employ['ONE_LAST_NAME']." - ".$employ['ACTIVE_STATE'];
             $doc = $employ['DOCUMENT_NUMBER'];
-            
-            //Querty Subdirectorates all
-            $consulta->setConsulta("SELECT * FROM sie.subdirectorates ORDER BY subdirectorate_name");
-            $subdAll = $consulta->getConsulta();
-            //$allSubdirectorate = mysql_fetch_array($subdAll);
             
             //Querty Subdirectorate
             /*$consulta->setConsulta("SELECT * FROM sie.subdirectorates s where
                 s.subdirectorate_id like $employ[SUBDIRECTORATE_ID]");
             $subd = $consulta->getConsulta();
-            $subdirectorate = mysql_fetch_array($subd);
-            $_SESSION['emp_edit_subd']=$employ['SUBDIRECTORATE_ID'];*/
+            $subdirectorate = mysql_fetch_array($subd);*/
+            $_SESSION['emp_edit_subd']=$employ['SUBDIRECTORATE_ID'];
 
             //Querty job
-            $consulta->setConsulta("SELECT * FROM sie.jobs s where
-                s.job_id like $employ[JOB_ID]");
-            $job = $consulta->getConsulta();
+            if ($employ['MANAGER_ID'] != ""){
+                $consulta->setConsulta("SELECT * FROM sie.employees s where
+                    s.DOCUMENT_NUMBER like $employ[MANAGER_ID]");
+                $emp_man = $consulta->getConsulta();
+            }
             //$job = mysql_fetch_array($j);
         }
     ?>
@@ -53,7 +62,7 @@ if (!isset($user) && empty($user)) {
 			<div class="container span2"></div>
 			<!--============columna Formulario==================-->
 			<div class="container span8">
-                            <form class="form-horizontal" name="form_edit" action="" method="post">
+                            <form class="form-horizontal" name="form_edit" action="../../controller/Employee/employee_save.php" method="post">
 					<legend>
 						<div class="row">
 							<div class="span4 offset1">Registrar Datos</div>
@@ -269,7 +278,14 @@ if (!isset($user) && empty($user)) {
 						<div class="span5" id="mydiv">
 							Jefe Inmediato o Supervisor:<br>
 							<select id="manager" name="manager" class="input-block-level">
-								<option value="">Seleccione</option>
+                                                            <option value="">Seleccione</option>
+                                                            <?php $emp_manager = mysql_fetch_array($emp_man);
+                                                            if (isset($doc) && !empty($doc) && (isset($emp_manager) && !empty($emp_manager))) { 
+                                                                
+                                                            ?>
+                                                            <option value="<?php print $emp_manager['DOCUMENT_NUMBER'] ?>" <?php print 'selected'; ?>
+                                                                ><?php print($emp_manager['ONE_LAST_NAME']." ".$emp_manager['TWO_LAST_NAME']." ".$emp_manager['ONE_FIRST_NAME']." ".$emp_manager['TWO_FIRST_NAME']."<br>"); ?></option>
+                                                            <?php } ?>
 							</select>
 						</div>
 						<div class="span1"></div>
@@ -297,7 +313,8 @@ if (!isset($user) && empty($user)) {
 							Cargo:<br>
 							<div class="control-group">
 								<div class="span8">
-									<select  name="job" class="input-block-level">
+									<select  name="job" class="input-block-level" required>
+                                                                            <option value="">Seleccione</option>
                                                                             <?php 
                                                                             while ($row1 = mysql_fetch_array($job)){?>
 										<option value="<?php print $row1['JOB_ID'];?>"
@@ -317,9 +334,10 @@ if (!isset($user) && empty($user)) {
 						</div>
 						<div class="span5">
 							Estado Funcionario:<br>
-							<select class="input-block-level" name="activeState">
-								<option value="0" <?php if (isset($doc) && !empty($doc) && $employ['ACTIVE_STATE'] == 0 ) { print 'selected';} ?>>INACTIVO</option>
-								<option value="1" <?php if (isset($doc) && !empty($doc) && $employ['ACTIVE_STATE'] == 1 ) { print 'selected';} ?>>ACTIVO</option>
+							<select class="input-block-level" name="activeState" required>
+                                                            <option value="">Seleccione</option>
+                                                            <option value="0" <?php if (isset($doc) && !empty($doc) && $employ['ACTIVE_STATE'] == 0 ) { print 'selected';} ?>>INACTIVO</option>
+                                                            <option value="1" <?php if (isset($doc) && !empty($doc) && $employ['ACTIVE_STATE'] == 1 ) { print 'selected';} ?>>ACTIVO</option>
 							</select>
 						</div>
 						<div class="span1"></div>
