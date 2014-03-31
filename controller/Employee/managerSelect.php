@@ -10,7 +10,7 @@
         OR MANAGER_ID IS NULL
         AND  NOT (e.DOCUMENT_NUMBER LIKE '".$em."')
         ORDER BY e.one_last_name, e.two_last_name, e.one_first_name, e.two_first_name");
-    
+    $_SESSION['emp_edit_subd']="";
     print ("<BR><option value=''><br>");
         print("Seleccione"."<br>");
     print ("</option>");

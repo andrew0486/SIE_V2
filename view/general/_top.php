@@ -12,14 +12,14 @@
           <ul class="nav">
                   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-th-list"></i> Usuarios</a>
                         <ul class="dropdown-menu">
-                            <li><a class="button" href="http://localhost/SIE_V2/view/Admin/employee_edit.php">Crear Usuario</a></li>
-                            <li><a class="button" href="http://localhost/SIE_V2/view/Admin/employees_list.php">Listar Usuarios</a></li>
+                            <li><a class="button" href="http://localhost/SIE_V2/view/admin/employee_edit.php">Crear Usuario</a></li>
+                            <li><a class="button" href="http://localhost/SIE_V2/view/admin/employees_list.php">Listar Usuarios</a></li>
                         </ul>
                   </li>
                   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-th-list"></i> Lineas Estrategicas</a>
                         <ul class="dropdown-menu">
-                                <li><a class="button" href="http://localhost/SIE_V2/view/Admin/strategic_lines.php">Crear</a></li>
-                                <li><a class="button" href="http://localhost/SIE_V2/view/Admin/strategic_line_consult.php">Consultar</a></li>
+                                <li><a class="button" href="http://localhost/SIE_V2/view/admin/strategic_lines.php">Crear</a></li>
+                                <li><a class="button" href="http://localhost/SIE_V2/view/admin/strategic_line_consult.php">Consultar</a></li>
                         </ul>
                   </li>
                   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class=" icon-list-alt"></i>  Programas</a>
