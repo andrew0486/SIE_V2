@@ -8,7 +8,9 @@
 class Conexion{
      
     private static $host = "localhost";
+    //private static $host = "192.168.1.2";
     private static $user = "root";
+    //private static $user = "sistemaSIE@%";
     private static $pass = "1234qwer";
     public $db = "sie";
     

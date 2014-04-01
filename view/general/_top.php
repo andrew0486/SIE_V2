@@ -24,8 +24,8 @@
                   </li>
                   <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class=" icon-list-alt"></i>  Programas</a>
                         <ul class="dropdown-menu">
-                                <li><a class="button" href="">Crear</a></li>
-                                <li><a class="button" href="">Consultar</a></li>
+                                <li><a class="button" href="http://localhost/SIE_V2/view/admin/programs.php">Crear</a></li>
+                                <li><a class="button" href="http://localhost/SIE_V2/view/admin/programs_consult.php">Consultar</a></li>
                         </ul>	
                   </li>
 
@@ -38,7 +38,7 @@
 
                     <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user"></i> Usuario</a>
                         <ul class="dropdown-menu">
-                            <li><a class="button" href="http://localhost/SIE_V2/view/index.php">Salir</a></li>
+                            <li><a class="button" href="http://localhost/SIE_V2/controller/session/logout.php">Salir</a></li>
                         </ul>
                     </li>	
             </ul>

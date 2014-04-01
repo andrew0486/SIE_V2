@@ -2,7 +2,7 @@
 @$user = $_SESSION['sesion'];
 //session_destroy();
 if (!isset($user) && empty($user)) {
-    header('Location: index.php');
+    header('Location: http://localhost/SIE_V2/view/index.php');
 }else{
 ?>
 <html lang="es">
