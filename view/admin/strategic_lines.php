@@ -35,7 +35,7 @@ if (!isset($user) && empty($user)) {
                 WHERE strategic_line_id like $edit_l[STRATEGIC_LINE_ID]");
             $edit_deadline = mysql_fetch_array($consulta_form_sl->getConsulta());
             
-            $_SESSION['edit_strategic_line'] = $edit_l['STRATEGIC_LINE_ID'];
+            
             
         }
     ?>
@@ -83,7 +83,11 @@ if (!isset($user) && empty($user)) {
                                     <div class="row">
                                             <div class="span8 offset2 control-group">
                                                     <div class="span6">
-                                                            <button type="submit" class="btn btn-primary input-block-level">Crear</button>	
+                                                            <button type="submit" class="btn btn-primary input-block-level"
+                                                                    onclick="<?php if (isset($edit_l) && !empty($edit_l)) {
+                                                                        $_SESSION['edit_strategic_line'] = $edit_l['STRATEGIC_LINE_ID'];
+                                                                    }?>"
+                                                                    >Crear</button>	
                                                     </div>
                                                     <div class="span6">
                                                             <a href="http://localhost/SIE_V2/view/principal.php" class="btn btn-default input-block-level" >Cancelar</a>	

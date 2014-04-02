@@ -62,7 +62,9 @@ if (!isset($user) && empty($user)) {
 			<div class="container span2"></div>
 			<!--============columna Formulario==================-->
 			<div class="container span8">
-                            <form class="form-horizontal" name="form_edit" action="../../controller/Employee/employee_save.php" method="post">
+                            <form class="form-horizontal" name="form_edit" action=
+                                  "<?php if (!isset($doc) && empty($doc)) {print '../../controller/Employee/employee_save.php';}
+                                else{print '../../controller/Employee/employee_update.php';}?>" method="post">
 					<legend>
 						<div class="row">
 							<div class="span4 offset1">Registrar Datos</div>
@@ -158,98 +160,118 @@ if (!isset($user) && empty($user)) {
 						<div class="span1"></div>
 					</div>
 					<br>
-					<div class="row">
+                                        <div class="row">
 						<div class="span10 offset1">
 							Funciones:<br>
+                                                        <label for="administratot" class="checkbox">
+                                                            <input type="checkbox" name="administratot" id="administratot" onclick="create_user.disabled = !this.checked;upload_user.disabled = !this.checked;
+                                                                            create_line.disabled = !this.checked;upload_line.disabled = !this.checked;create_program.disabled = !this.checked;
+                                                                            upload_program.disabled = !this.checked;create_project.disabled = !this.checked;upload_project.disabled = !this.checked;
+                                                                            create_contract.disabled = !this.checked;upload_contract.disabled = !this.checked;
+                                                                            create_project_year.disabled = !this.checked;upload_project_year.disabled = !this.checked;
+                                                                            create_pa.disabled = !this.checked;upload_pa.disabled = !this.checked;create_poa.disabled = !this.checked;
+                                                                            upload_poa.disabled = !this.checked;"> Administrador
+							</label>
 							<div class="container">
 								<div class="span3">
 									<h4>Usuarios</h4>
-									<label for="createUser" class="checkbox"><input type="checkbox" name="createUser" id="createUser" value="createUser" disabled="disabled">
+									<label for="create_user" class="checkbox"><input type="checkbox" name="create_user" id="create_user" value="create_user" disabled>
                                                                             Crear Usuarios
                                                                         </label>
-									<label for="uploadUser" class="checkbox"><input type="checkbox" name="uploadUser" id="uploadUser" value="uploadUser" disabled="disabled">
+									<label for="upload_user" class="checkbox"><input type="checkbox" name="upload_user" id="upload_user" value="upload_user" disabled>
                                                                             Actualizar Usuarios
                                                                         </label>
-									<label for="deleteUser" class="checkbox"><input type="checkbox" name="deleteUser" id="deleteUser" value="deleteUser" disabled="disabled">
-                                                                            deleteUser
+									<label for="read_user" class="checkbox"><input type="checkbox" name="read_user" id="read_user" value="read_user">
+                                                                            Leer Usuarios
                                                                         </label>
                                                                         
-									<h4>Expedientes</h4>
-									<label for="createFile" class="checkbox"><input type="checkbox" name="createFile" id="createFile" value="createFile">
-                                                                            createFile
+									<h4>Linea</h4>
+									<label for="create_line" class="checkbox"><input type="checkbox" name="create_line" id="create_line" value="create_line" disabled>
+                                                                            Crear Linea
                                                                         </label>
-									<label for="uploadFile" class="checkbox"><input type="checkbox" name="uploadFile" id="uploadFile" value="uploadFile">
-                                                                            uploadFile
+									<label for="upload_line" class="checkbox"><input type="checkbox" name="upload_line" id="upload_line" value="upload_line" disabled>
+                                                                            Actualizar Linea
                                                                         </label>
-									<label for="deleteFile" class="checkbox"><input type="checkbox" name="deleteFile" id="deleteFile" value="deleteFile">
-                                                                            deleteFile
+									<label for="read_line" class="checkbox"><input type="checkbox" name="read_line" id="read_line" value="read_line">
+                                                                            Leer Linea
                                                                         </label>
                                                                         
-									<h4>Procesos</h4>
-									<label for="createProcess" class="checkbox"><input type="checkbox" name="createProcess" id="createProcess" value="createProcess">
-                                                                            createProcess
+									<h4>Programa</h4>
+									<label for="create_program" class="checkbox"><input type="checkbox" name="create_program" id="create_program" value="create_program" disabled>
+                                                                            Crear Programa
                                                                         </label>
-									<label for="uploadProcess" class="checkbox"><input type="checkbox" name="uploadProcess" id="uploadProcess" value="uploadProcess">
-                                                                            uploadProcess
+									<label for="upload_program" class="checkbox"><input type="checkbox" name="upload_program" id="upload_program" value="upload_program" disabled>
+                                                                            Actualizar Programa
                                                                         </label>
-									<label for="deleteProcess" class="checkbox"><input type="checkbox" name="deleteProcess" id="deleteProcess" value="deleteProcess">
-                                                                            deleteProcess
+									<label for="read_program" class="checkbox"><input type="checkbox" name="read_program" id="read_program" value="read_program">
+                                                                            Leer Programa
                                                                         </label>
 								</div>
 								<div class="span3">
-									<h4>Autos de Inicio</h4>
-									<label for="createAutoStart" class="checkbox"><input type="checkbox" name="createAutoStart" id="createAutoStart" value="createAutoStart">
-                                                                            createAutoStart
+									<h4>Proyecto</h4>
+									<label for="create_project" class="checkbox"><input type="checkbox" name="create_project" id="create_project" value="create_project" disabled>
+                                                                           Crear Proyecto
                                                                         </label>
-									<label for="uploadAutoStart" class="checkbox"><input type="checkbox" name="uploadAutoStart" id="uploadAutoStart" value="uploadAutoStart"
+									<label for="upload_project" class="checkbox"><input type="checkbox" name="upload_project" id="upload_project" value="upload_project" disabled
 									
-									>uploadAutoStart</label>
-									<label for="deleteAutoStart" class="checkbox"><input type="checkbox" name="deleteAutoStart" id="deleteAutoStart" value="deleteAutoStart"
+									>Actualizar Proyecto</label>
+									<label for="read_project" class="checkbox"><input type="checkbox" name="read_project" id="read_project" value="read_project"
 									
-									>deleteAutoStart</label>
-									<h4>Autos de Requerimiento</h4>
-									<label for="createAutoRequeriment" class="checkbox"><input type="checkbox" name="createAutoRequeriment" id="createAutoRequeriment" value="createAutoRequeriment"
+									>Leer Proyecto</label>
+									<h4>Contratos</h4>
+									<label for="create_contract" class="checkbox"><input type="checkbox" name="create_contract" id="create_contract" value="create_contract" disabled
 									
-									>createAutoRequeriment</label>
-									<label for="uploadAutorequeriment" class="checkbox"><input type="checkbox" name="uploadAutorequeriment" id="uploadAutorequeriment" value="uploadAutorequeriment"
+									>Crear Contrato</label>
+									<label for="upload_contract" class="checkbox"><input type="checkbox" name="upload_contract" id="upload_contract" value="upload_contract" disabled
 									
-									>uploadAutorequeriment</label>
-									<label for="deleteAutoRequeriment" class="checkbox"><input type="checkbox" name="deleteAutoRequeriment" id="deleteAutoRequeriment" value="deleteAutoRequeriment"
+									>Actualizar Contrato</label>
+									<label for="read_contract" class="checkbox"><input type="checkbox" name="read_contract" id="read_contract" value="read_contract"
 									
-									>deleteAutoRequeriment</label>
-									<h4>Avisos</h4>
-									<label for="createNotice" class="checkbox"><input type="checkbox" name="createNotice" id="createNotice" value="createNotice"
+									>Leer Contrato</label>
+									<h4>Año Proyecto</h4>
+									<label for="create_project_year" class="checkbox"><input type="checkbox" name="create_project_year" id="create_project_year" value="create_project_year" disabled
 									
-									>createNotice</label>
-									<label for="uploadNotice" class="checkbox"><input type="checkbox" name="uploadNotice" id="uploadNotice" value="uploadNotice"
+									>Crear Año Proyecto</label>
+									<label for="upload_project_year" class="checkbox"><input type="checkbox" name="upload_project_year" id="upload_project_year" value="upload_project_year" disabled
 									
-									>uploadNotice</label>
-									<label for="deleteNotice" class="checkbox"><input type="checkbox" name="deleteNotice" id="deleteNotice" value="deleteNotice"
+									>Actualizar Año Proyecto</label>
+									<label for="read_project_year" class="checkbox"><input type="checkbox" name="read_project_year" id="read_project_year" value="read_project_year"
 									
-									>deleteNotice</label>
+									>Leer Año Proyecto</label>
 								</div>
 								<div class="span3">
-									<h4>Conceptor Técnicos</h4>
-									<label for="createTechnicalConcept" class="checkbox"><input type="checkbox" name="createTechnicalConcept" id="createTechnicalConcept" value="createTechnicalConcept"
+									<h4>Actividad PA</h4>
+									<label for="create_pa" class="checkbox"><input type="checkbox" name="create_pa" id="create_pa" value="create_pa" disabled
 									
-									>createTechnicalConcept</label>
-									<label for="uploadTechnicalConcept" class="checkbox"><input type="checkbox" name="uploadTechnicalConcept" id="uploadTechnicalConcept" value="uploadTechnicalConcept"
+									>Crear Actividad PA</label>
+									<label for="upload_pa" class="checkbox"><input type="checkbox" name="upload_pa" id="upload_pa" value="upload_pa" disabled
 									
-									>uploadTechnicalConcept</label>
-									<label for="deleteTechnicalConcept" class="checkbox"><input type="checkbox" name="deleteTechnicalConcept" id="deleteTechnicalConcept" value="deleteTechnicalConcept"
+									>Actualizar Actividad PA</label>
+									<label for="read_pa" class="checkbox"><input type="checkbox" name="read_pa" id="read_pa" value="read_pa"
 									
-									>deleteTechnicalConcept</label>
-									<h4>Resoluciones</h4>
-									<label for="createResolution" class="checkbox"><input type="checkbox" name="createResolution" id="createResolution" value="createResolution"
+									>Leer Actividad PA</label>
+									<h4>Actividad POA</h4>
+									<label for="create_poa" class="checkbox"><input type="checkbox" name="create_poa" id="create_poa" value="create_poa" disabled
 									
-									>createResolution</label>
-									<label for="uploadResolution" class="checkbox"><input type="checkbox" name="uploadResolution" id="uploadResolution" value="uploadResolution"
+									>Crear Actividad POA</label>
+									<label for="upload_poa" class="checkbox"><input type="checkbox" name="upload_poa" id="upload_poa" value="upload_poa" disabled
 									
-									>uploadReolution</label>
-									<label for="deleteResolution" class="checkbox"><input type="checkbox" name="deleteResolution" id="deleteResolution" value="deleteResolution"
+									>Crear Actividad POA</label>
+									<label for="read_poa" class="checkbox"><input type="checkbox" name="read_poa" id="read_poa" value="read_poa"
 									
-									>deleteResolution</label>
+									>Crear Actividad POA</label>
+									<h4>Avance POA</h4>
+									<label for="create_advance_poa" class="checkbox"><input type="checkbox" name="create_advance_poa" id="create_advance_poa" value="create_advance_poa" 
+									
+									>Crear Avance POA</label>
+									<label for="upload_advance_poa" class="checkbox"><input type="checkbox" name="upload_advance_poa" id="upload_advance_poa" value="upload_advance_poa" 
+									
+									>Actualizar Avance POA</label>
+									<label for="read_advance_poa" class="checkbox"><input type="checkbox" name="read_advance_poa" id="read_advance_poa" value="read_advance_poa"
+									
+									>Leer Avance POA</label>
 								</div>
+								
 							
 							</div>
 						</div>
@@ -278,7 +300,7 @@ if (!isset($user) && empty($user)) {
 						<div class="span5" id="mydiv">
 							Jefe Inmediato o Supervisor:<br>
 							<select id="manager" name="manager" class="input-block-level">
-                                                            <option value="">Seleccione</option>
+                                                            <option value="null">Seleccione</option>
                                                             <?php $emp_manager = mysql_fetch_array($emp_man);
                                                             if (isset($doc) && !empty($doc) && (isset($emp_manager) && !empty($emp_manager))) { 
                                                                 
@@ -347,7 +369,10 @@ if (!isset($user) && empty($user)) {
 					<div class="row">
 						<div class="span8 offset2 control-group">
 							<div class="span6">
-								<button type="submit" class="btn btn-primary input-block-level">Aceptar</button>	
+								<button type="submit" class="btn btn-primary input-block-level"
+                                                                        <?php if (isset($doc) && !empty($doc)) {
+                                                                        $_SESSION['edit_employee'] = $employ['DOCUMENT_NUMBER'];
+                                                                    } ?>>Aceptar</button>	
 							</div>
 							<div class="span6">
                                                             <a href="http://localhost/SIE_V2/view/principal.php" class="btn btn-default input-block-level" >Cancelar</a>	

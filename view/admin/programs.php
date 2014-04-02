@@ -35,7 +35,9 @@ if (!isset($user) && empty($user)) {
                                         $cons_sl = $consulta->getConsulta();
                                         
                                         @$edit_p = $_GET['id'];
+                                        $codigo = $edit_p;
                                         if (isset($edit_p) && !empty($edit_p)){
+                                            //$_SESSION['program_edit'] = $edit_p;
                                             $consulta->setConsulta("SELECT S.STRATEGIC_LINE_ID, S.STRATEGIC_LINE_NAME, P.PROGRAM_NAME, 
                                                 P.PROGRAM_STATUS, P.PROGRAM_WEIGHTING, P.PROGRAM_OBJECTIVE,
                                                 D.DEADLINE_START_DATE, DEADLINE_END_DATE
@@ -46,13 +48,16 @@ if (!isset($user) && empty($user)) {
                                             $cons_prgm = $consulta->getConsulta();
                                             
                                             $edit_p = mysql_fetch_array($cons_prgm);
+                                            
+                                            
                                         }
                                     ?>
-                                    <form role="form" name="form_prgm" id="crearPrograma" method="post" action="">
+                                    <form role="form" name="form_prgm" id="crearPrograma" method="post" action="<?php if (!isset($edit_p) && empty($edit_p)) {print '../../controller/program/program_save.php';}
+                                else{print '../../controller/program/program_update.php';}?>">
 						<legend>Información</legend>
 						<div class="form-group form-inline well">
 							<div class="control-group well">
-								<select class="span8" id="strategic_line_id" name="strategic_line_id" required >
+								<select class="span8" id="strategic_line" name="strategic_line" required >
                                                                     <option value="">Seleccione una Linea Estrategica</option>
                                                                     <?php 
                                                                         while ($row_sl = mysql_fetch_array($cons_sl)) {
@@ -74,27 +79,26 @@ if (!isset($user) && empty($user)) {
                                                                        <?php if (isset($edit_p) && !empty($edit_p)) {print "value='$edit_p[PROGRAM_NAME]' disabled='"."true'";}?>>	
 							</div><br>
 							<div class="controls controls-row">
-								<textarea class="span12" rows="4" style="resize:none" id="program_objective" name="program_objective" placeholder="Objetivo:*" required
-                                                                          ><?php if (isset($edit_p) && !empty($edit_p)) {print $edit_p['PROGRAM_OBJECTIVE'];}?>
-                                                                </textarea>
+								<textarea class="span12" rows="4" style="resize:none" id="program_objective" name="program_objective" placeholder="Objetivo:*" required><?php if (isset($edit_p) && !empty($edit_p)){ print $edit_p['PROGRAM_OBJECTIVE'];} ?></textarea>
 							</div><br>
-							<div class="controls controls-row">
-								<input class="span3" type="text" id="program_weighting" name="program_weighting" placeholder="Ponderación:*" required
-                                                                       value="<?php if (isset($edit_p) && !empty($edit_p)) {print $edit_p['PROGRAM_WEIGHTING'];}?>">
-							</div><br>
+							<div class="controls controls-row input-append">
+								<input class="span12" type="text" id="program_weighting" name="program_weighting" placeholder="Ponderación:*" required
+                                                                       value="<?php if (isset($edit_p) && !empty($edit_p)){ print $edit_p['PROGRAM_WEIGHTING'];} ?>">
+                                                                <span class="add-on"> % </span>
+							</div><br><br>
 							<div class="controls controls-row">
 								<label class="span2" for="deadline_start_date">Vigencia:</label>
-								<input class="span4" type="date" id="deadline_start_date" name="dead_line_start_date" required
+								<input class="span4" type="date" id="deadline_start_date" name="deadline_start_date" required
                                                                        <?php if (isset($edit_p) && !empty($edit_p)) {print "value='$edit_p[DEADLINE_START_DATE]' disabled='"."true'";}?>>	
 								<label class="span1" for="deadline_start_end_date">a</label>
-								<input class="span4" type="date" id="deadline_start_end_date" required
+                                                                <input class="span4" type="date" id="deadline_end_date" name="deadline_end_date" required
                                                                        <?php if (isset($edit_p) && !empty($edit_p)) {print "value='$edit_p[DEADLINE_END_DATE]' disabled='"."true'";}?>>	
 							</div><br>
                                                         <div class="controls controls-row">
                                                                 <label class="span2" for="program_status">Estado:</label>
                                                                 <select class="span4" id="program_status" name="program_status" required>
-                                                                        <option value="0" <?php if (isset($edit_p) && !empty($edit_l) && $edit_p['PROGRAM_STATUS'] == 0 ) { print 'selected';} ?>>INACTIVO</option>
-                                                                        <option value="1" <?php if (isset($edit_p) && !empty($edit_l) && $edit_p['PROGRAM_STATUS'] == 1 ) { print 'selected';} ?>>ACTIVO</option>
+                                                                        <option value="0" <?php if (isset($edit_p) && !empty($edit_p) && $edit_p['PROGRAM_STATUS'] == 0 ) { print 'selected';} ?>>INACTIVO</option>
+                                                                        <option value="1" <?php if (isset($edit_p) && !empty($edit_p) && $edit_p['PROGRAM_STATUS'] == 1 ) { print 'selected';} ?>>ACTIVO</option>
                                                                 </select>	
                                                         </div>
 						</div>
@@ -102,7 +106,9 @@ if (!isset($user) && empty($user)) {
                                                 <div class="row">
                                                         <div class="span8 offset2 control-group">
                                                                 <div class="span6">
-                                                                        <button type="submit" class="btn btn-primary input-block-level">Aceptar</button>	
+                                                                    <button type="submit" class="btn btn-primary input-block-level"
+                                                                            onclick="<?php if (isset($edit_p) && !empty($edit_p)){$_SESSION['program_edit'] = $codigo;}?>"
+                                                                            >Aceptar</button>	
                                                                 </div>
                                                                 <div class="span6">
                                                                     <a href="http://localhost/SIE_V2/view/principal.php" class="btn btn-default input-block-level" >Cancelar</a>	
