@@ -15,7 +15,7 @@
         print("Seleccione"."<br>");
     print ("</option>");
     while ($e = mysql_fetch_array($consulta1->getConsulta())) {
-        print ("<BR><option value=".$row['DOCUMENT_NUMBER']."><br>");
+        print ("<BR><option value='".$e['DOCUMENT_NUMBER']."'><br>");
             print($e['ONE_LAST_NAME']." ".$e['TWO_LAST_NAME']." ".$e['ONE_FIRST_NAME']." ".$e['TWO_FIRST_NAME']."<br>");
         print ("</option>");
     }

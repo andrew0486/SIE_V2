@@ -141,10 +141,10 @@ if (!isset($user) && empty($user)) {
 							<select name="documentType" class="input-block-level">
 								<option value="CEDULA CIUDADANÍA" 
                                                                         <?php if (isset($doc) && !empty($doc) && $employ['DOCUMENT_TYPE'] == "CEDULA CIUDADANÍA") {print 'selected';}?>
-                                                                        >CEDULA CIUDADANÍA</option>
+                                                                        >CEDULA CIUDADANIA</option>
 								<option value="CEDULA EXTRANJERÍA"
                                                                         <?php if (isset($doc) && !empty($doc) && $employ['DOCUMENT_TYPE'] == "CEDULA EXTRANJERÍA") {print 'selected';}?>
-                                                                        >CEDULA EXTRANJERÍA</option>
+                                                                        >CEDULA EXTRANJERIA</option>
 							</select>
 						</div>
 						<div class="span4">
@@ -155,7 +155,7 @@ if (!isset($user) && empty($user)) {
 						<div class="span3">
 							Número de Documento:<br>
 							<input type="text" class="input-block-level" autocomplete="off" id="documentNumber" placeholder="N° documento de identidad" maxlength="25" name="documentNumber" required
-							value="<?php if (isset($doc) && !empty($doc)) { print $employ['DOCUMENT_NUMBER'];}?>"/>
+							<?php if (isset($doc) && !empty($doc)) { print "value='$employ[DOCUMENT_NUMBER]' disabled='"."true'";}?>/>
 						</div>
 						<div class="span1"></div>
 					</div>
@@ -163,8 +163,8 @@ if (!isset($user) && empty($user)) {
                                         <div class="row">
 						<div class="span10 offset1">
 							Funciones:<br>
-                                                        <label for="administratot" class="checkbox">
-                                                            <input type="checkbox" name="administratot" id="administratot" onclick="create_user.disabled = !this.checked;upload_user.disabled = !this.checked;
+                                                        <label for="administrator" class="checkbox">
+                                                            <input type="checkbox" name="administrator" id="administrator" onclick="create_user.disabled = !this.checked;upload_user.disabled = !this.checked;
                                                                             create_line.disabled = !this.checked;upload_line.disabled = !this.checked;create_program.disabled = !this.checked;
                                                                             upload_program.disabled = !this.checked;create_project.disabled = !this.checked;upload_project.disabled = !this.checked;
                                                                             create_contract.disabled = !this.checked;upload_contract.disabled = !this.checked;
@@ -300,7 +300,7 @@ if (!isset($user) && empty($user)) {
 						<div class="span5" id="mydiv">
 							Jefe Inmediato o Supervisor:<br>
 							<select id="manager" name="manager" class="input-block-level">
-                                                            <option value="null">Seleccione</option>
+                                                            <option value="">Seleccione</option>
                                                             <?php $emp_manager = mysql_fetch_array($emp_man);
                                                             if (isset($doc) && !empty($doc) && (isset($emp_manager) && !empty($emp_manager))) { 
                                                                 
