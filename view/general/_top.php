@@ -36,7 +36,10 @@
                         </ul>
                     </li>	
 
-                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user"></i> Usuario</a>
+                    <?php //session_start();
+                        $nombre = $_SESSION['nameLogin'];
+                    ?>
+                    <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><i class="icon-user"></i> <?php echo $nombre;?></a>
                         <ul class="dropdown-menu">
                             <li><a class="button" href="http://localhost/SIE_V2/controller/session/logout.php">Salir</a></li>
                         </ul>

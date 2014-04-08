@@ -23,6 +23,7 @@
    $dato = mysql_fetch_array($consulta->getConsulta());
    if (isset($dato['DOCUMENT_NUMBER']) && !empty($dato['DOCUMENT_NUMBER'])){
        $_SESSION['sesion'] = $dato['DOCUMENT_NUMBER'];
+       $_SESSION['nameLogin'] = $dato['ONE_FIRST_NAME'];
        header('Location: ../../view/principal.php');
    }else{
        //header('Location: ../../view/index.php');
