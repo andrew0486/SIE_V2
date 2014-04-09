@@ -90,7 +90,7 @@ if (!isset($user) && empty($user)) {
                                                                     >Crear</button>	
                                                     </div>
                                                     <div class="span6">
-                                                            <a href="http://localhost/SIE_V2/view/principal.php" class="btn btn-default input-block-level" >Cancelar</a>	
+                                                            <a href="http://localhost/SIE_V2/view/admin/strategic_line_consult.php" class="btn btn-default input-block-level" >Cancelar</a>	
                                                     </div>
 
 

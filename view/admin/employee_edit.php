@@ -375,7 +375,7 @@ if (!isset($user) && empty($user)) {
                                                                     } ?>>Aceptar</button>	
 							</div>
 							<div class="span6">
-                                                            <a href="http://localhost/SIE_V2/view/principal.php" class="btn btn-default input-block-level" >Cancelar</a>	
+                                                            <a href="http://localhost/SIE_V2/view/admin/employees_list.php" class="btn btn-default input-block-level" >Cancelar</a>	
 							</div>
 							
 							
