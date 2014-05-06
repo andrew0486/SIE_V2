@@ -2,7 +2,8 @@
 @$user = $_SESSION['sesion'];
 //session_destroy();
 if (isset($user) && !empty($user)) {
-    header('Location: http://localhost/SIE_V2/view/principal.php');
+    header('Location: principal.php');
+    require '';
 }else{
 ?>
 <!doctype html>
@@ -11,18 +12,18 @@ if (isset($user) && !empty($user)) {
     <meta charset="UTF-8">
     <title>SIE</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/bootstrap.css">
-    <link rel="stylesheet" href="../css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="../../css/bootstrap.css">
+    <link rel="stylesheet" href="../../css/bootstrap-responsive.css">
 </head>
 <body>
     <?php
-        include '../view/general/header_hero.php';
+        include '../general/header_hero.php';
     ?>
     
     <div class="container-fluid">
     <div class="row-fluid">
         <div class="span6 offset3">
-            <form class="form-horizontal" action="../controller/session/login.php" method="post">
+            <form class="form-horizontal" action="../../controller/session/login.php" method="post">
                 <fieldset>
                     <legend>Inicio de Sesión</legend>
 
@@ -53,11 +54,13 @@ if (isset($user) && !empty($user)) {
     </div>
 </div>
     
-    <a href="../model/query/query_employees.php">cargar bd</a>
+    <?php 
+    include_once '../general/_down.php';
+    ?>
 
-    <script type="text/javascript" src="../js/jquery.js"></script>
-    <script type="text/javascript" src="../js/bootstrap.js"></script>
-    <script type="text/javascript" src="../js/vanadium.js"></script>
+    <script type="text/javascript" src="../../js/jquery.js"></script>
+    <script type="text/javascript" src="../../js/bootstrap.js"></script>
+    <script type="text/javascript" src="../../js/vanadium.js"></script>
 </body>
 </html>
 <?php } ?>

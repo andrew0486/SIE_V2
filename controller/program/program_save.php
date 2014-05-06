@@ -27,5 +27,5 @@
     $save_prgm->setConsulta("INSERT INTO sie.deadlines (PROGRAM_ID, DEADLINE_START_DATE, DEADLINE_END_DATE) 
         VALUES (".$max_id['PROGRAM_ID'].", '".$prgm_start_date."', '".$prgm_end_date."')");
     
-    header('Location: http://localhost/SIE_V2/view/admin/programs_consult.php');
+    header('Location: ../../view/admin/programs_consult.php');
 ?>

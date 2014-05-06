@@ -2,7 +2,7 @@
 @$user = $_SESSION['sesion'];
 //session_destroy();
 if (!isset($user) && empty($user)) {
-    header('Location: http://localhost/SIE_V2/view/index.php');
+    header('Location: ../principal/index.php');
 }else{
 ?>
 <html lang="es">
@@ -90,7 +90,7 @@ if (!isset($user) && empty($user)) {
                                                                     >Crear</button>	
                                                     </div>
                                                     <div class="span6">
-                                                            <a href="http://localhost/SIE_V2/view/admin/strategic_line_consult.php" class="btn btn-default input-block-level" >Cancelar</a>	
+                                                            <a href="strategic_line_consult.php" class="btn btn-default input-block-level" >Cancelar</a>	
                                                     </div>
 
 

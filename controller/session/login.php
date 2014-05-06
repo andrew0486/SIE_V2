@@ -7,7 +7,7 @@
    //conectionDB(conection());
    //$datos = query("SELECT * FROM sie.employees ORDER BY one_first_name, two_last_name, one_first_name, two_first_name;");
    
-   $userName = $_POST['username'];
+   $userName = trim($_POST['username']);
    $password = $_POST['pass'];
 
    require_once '../../controller/database/consultas.php';
@@ -21,12 +21,25 @@
    //     echo $reg['DOCUMENT_NUMBER']." - ".$reg['ONE_FIRST_NAME']." ".$reg['TWO_FIRST_NAME']." ".$reg['ONE_LAST_NAME']." ".$reg['TWO_LAST_NAME']."<br>";
    //}
    $dato = mysql_fetch_array($consulta->getConsulta());
-   if (isset($dato['DOCUMENT_NUMBER']) && !empty($dato['DOCUMENT_NUMBER'])){
-       $_SESSION['sesion'] = $dato['DOCUMENT_NUMBER'];
-       $_SESSION['nameLogin'] = $dato['ONE_FIRST_NAME'];
-       header('Location: ../../view/principal.php');
+   if ((isset($dato['DOCUMENT_NUMBER']) && !empty($dato['DOCUMENT_NUMBER']) && ($dato['ACTIVE_STATE'] == 1))){
+       $dateEmplo = strtotime($dato['END_DATE']);
+       $actual = strtotime(date("y-m-d"));
+       
+       if (($actual <= $dateEmplo) || (empty($dateEmplo))){
+           $_SESSION['sesion'] = $dato['DOCUMENT_NUMBER'];
+           $_SESSION['nameLogin'] = $dato['ONE_FIRST_NAME'];
+           $admin = false;
+           if($dato['JOB_ID']==1 || $dato['JOB_ID']==3){
+               $admin = true;
+           }
+           $_SESSION['admin'] = $admin;
+           header('Location: ../../view/principal/principal.php');
+           //echo "entro siedo menor actual o nulo";
+       }else{
+           header('Location: ../../view/principal/index.php');
+       }
+       
    }else{
-       //header('Location: ../../view/index.php');
-       header('Location: ../../view/index.php');
+       header('Location: ../../view/principal/index.php');
    }
 ?>

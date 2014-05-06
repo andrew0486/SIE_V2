@@ -2,7 +2,7 @@
 @$user = $_SESSION['sesion'];
 //session_destroy();
 if (!isset($user) && empty($user)) {
-    header('Location: http://localhost/SIE_V2/view/index.php');
+    header('Location: ../principal/index.php');
 }else{
 ?>
 <html lang="es">
@@ -32,7 +32,7 @@ if (!isset($user) && empty($user)) {
                             <td><strong>NOMBRE</strong></td>
                             <td><strong>FECHA CREACIÓN</strong></td>
                             <td><strong>ESTADO</strong></td>
-                            <td><strong>Editar</strong></td>
+                            <td class="visible-desktop"><strong>Editar</strong></td>
                         </tr>
 
                     </thead>
@@ -55,7 +55,7 @@ if (!isset($user) && empty($user)) {
                                 <td><?php print $row['STRATEGIC_LINE_NAME'];?></td>
                                 <td><?php print $row['STRATEGIC_LINE_STAR_DATE'];?></td>
                                 <td><?php print $status;?></td>
-                                <td><a href="http://localhost/SIE_V2/view/admin/strategic_lines.php?id=<?php print $row['STRATEGIC_LINE_ID'];?>" class="btn btn-primary " title="Editar"><i class="icon-edit"></i></a></td>
+                                <td><a href="strategic_lines.php?id=<?php print $row['STRATEGIC_LINE_ID'];?>" class="btn btn-primary visible-desktop" title="Editar"><i class="icon-edit"></i></a></td>
                             </tr>
                         <?php 
                             }/*
@@ -76,10 +76,12 @@ if (!isset($user) && empty($user)) {
         <div class="container">
 		<!--% if (administrator != null){ %-->
 		<div class="row-fluid">
-                    <a href="http://localhost/SIE_V2/view/admin/strategic_lines.php" class="btn btn-primary "><img alt="Prev" src="../../img/glyphicons/glyphicons_036_file.png" height="20" width="20"> <strong>Nueva Linea</strong></a>
+                    <a href="strategic_lines.php" class="span2 btn btn-primary visible-desktop"><img alt="Prev" src="../../img/glyphicons/glyphicons_036_file.png" height="20" width="20"> <strong>Nueva Linea</strong></a>
 		</div>
 		<!--% }%-->
 	</div>
+        <br>
+        <?php include_once '../general/_down.php'; ?>
 	
 	
 	

@@ -1,16 +1,16 @@
 <?php 
     //BASIC REFERENCES EMPLOYE
-    $emp_oneFirstName = strtoupper($_POST['oneFirstName']);
-    $emp_twoFirstName = strtoupper($_POST['twoFirstName']);
-    $emp_oneLastName = strtoupper($_POST['oneLastName']);
-    $emp_twoLastName = strtoupper($_POST['twoLastName']);
+    $emp_oneFirstName = trim(strtoupper($_POST['oneFirstName']));
+    $emp_twoFirstName = trim(strtoupper($_POST['twoFirstName']));
+    $emp_oneLastName = trim(strtoupper($_POST['oneLastName']));
+    $emp_twoLastName = trim(strtoupper($_POST['twoLastName']));
     $emp_streetAddress = strtoupper($_POST['streetAddress']);
     $emp_cityResident = strtoupper($_POST['cityResident']);
-    $emp_phoneNumber = strtoupper($_POST['phoneNumber']);
-    $emp_email = $_POST['email'];
-    $emp_documentType = strtoupper($_POST['documentType']);
+    $emp_phoneNumber = trim(strtoupper($_POST['phoneNumber']));
+    $emp_email = trim($_POST['email']);
+    $emp_documentType = trim(strtoupper($_POST['documentType']));
     $emp_documentCity = strtoupper($_POST['documentCity']);
-    $emp_documentNumber = strtoupper($_POST['documentNumber']);
+    $emp_documentNumber = trim(strtoupper($_POST['documentNumber']));
     
     //JOB REFERENCES EMPLOYEE
     @$emp_manager = $_POST['manager']; 
@@ -105,6 +105,6 @@
             $emp_create_project_year, $emp_upload_project_year, $emp_read_project_year, $emp_create_pa, $emp_upload_pa, $emp_read_pa, 
             $emp_create_poa, $emp_upload_poa, $emp_read_poa, $emp_create_advance_poa, $emp_upload_advance_poa, $emp_read_advance_poa)");
      
-    header('Location: http://localhost/SIE_V2/view/admin/employees_list.php');
+    header('Location: ../../view/admin/employees_list.php');
     
 ?>

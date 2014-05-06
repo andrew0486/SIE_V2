@@ -7,5 +7,4 @@ if (!isset($sb) || empty($sb)) {
     echo "<br>con proj ".$sb['name'];
 }
     
-    
 ?>

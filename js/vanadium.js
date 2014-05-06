@@ -853,7 +853,7 @@ Vanadium.setupValidatorTypes = function() {
 							} ],
 					[ "required", function(a) {
 						return !Vanadium.validators_types.empty.test(a)
-					}, "<small>&nbsp&nbsp&nbsp Este Campo es requerido.</small>" ],
+					}, '<small>&nbsp&nbsp&nbsp  <img src="../../img/glyphicons/glyphicons_207_remove_2.png" height="15" width="15">  Este Campo es requerido.</small>' ],
 					[ "accept", function(b, a, c) {
 						return c.element.checked
 					}, "Debe ser aceptado.!" ],
@@ -867,7 +867,7 @@ Vanadium.setupValidatorTypes = function() {
 								return (!isNaN(b) && b.toString() == a && Math
 										.round(b) == b)
 							},
-							"Por favor, introduzca un número entero válido en este campo." ],
+							"Por favor, introduzca un nï¿½mero entero vï¿½lido en este campo." ],
 					[
 							"number",
 							function(a) {
@@ -881,28 +881,28 @@ Vanadium.setupValidatorTypes = function() {
 								return Vanadium.validators_types.empty.test(a)
 										|| (!isNaN(a) && !/^\s+$/.test(a))
 							},
-							"Por favor, introduzca un número válido en este campo." ],
+							"Por favor, introduzca un nï¿½mero vï¿½lido en este campo." ],
 					[
 							"digits",
 							function(a) {
 								return Vanadium.validators_types.empty.test(a)
 										|| !/[^\d]/.test(a)
 							},
-							"Por favor, use sólo números en este campo. Por favor, evite espacios u otros caracteres, tales como puntos o comas." ],
+							"Por favor, use sï¿½lo nï¿½meros en este campo. Por favor, evite espacios u otros caracteres, tales como puntos o comas." ],
 					[
 							"alpha",
 							function(a) {
 								return Vanadium.validators_types.empty.test(a)
 										|| /^[a-zA-Z\u00C0-\u00FF\u0100-\u017E\u0391-\u03D6]+$/
 												.test(a)
-							}, "Por favor, use sólo letras en este campo." ],
+							}, "Por favor, use sï¿½lo letras en este campo." ],
 					[
 							"asciialpha",
 							function(a) {
 								return Vanadium.validators_types.empty.test(a)
 										|| /^[a-zA-Z]+$/.test(a)
 							},
-							"Por favor, use sólo letras ASCII (a-z) en este campo." ],
+							"Por favor, use sï¿½lo letras ASCII (a-z) en este campo." ],
 					[
 							"alphanum",
 							function(a) {
@@ -910,14 +910,14 @@ Vanadium.setupValidatorTypes = function() {
 										|| !/\W/.test(a)
 							},
 
-							"Por favor, use solo letras (a-z) y números (0-9) en este campo. Sin espacios u otros caracteres." ],
+							"Por favor, use solo letras (a-z) y nï¿½meros (0-9) en este campo. Sin espacios u otros caracteres." ],
 					[
 							"date",
 							function(a) {
 								var b = new Date(a);
 								return Vanadium.validators_types.empty.test(a)
 										|| !isNaN(b)
-							}, "Por favor, introduzca una fecha válida." ],
+							}, "Por favor, introduzca una fecha vï¿½lida." ],
 					[
 							"email",
 							function(a) {
@@ -931,7 +931,7 @@ Vanadium.setupValidatorTypes = function() {
 								return Vanadium.validators_types.empty.test(a)
 										|| /^(http|https|ftp):\/\/(([A-Z0-9][A-Z0-9_-]*)(\.[A-Z0-9][A-Z0-9_-]*)+)(:(\d+))?\/?/i
 												.test(a)
-							}, "Por favor, introduzca una URL válida." ],
+							}, "Por favor, introduzca una URL vï¿½lida." ],
 					[
 							"date_au",
 							function(a) {
@@ -985,7 +985,7 @@ Vanadium.setupValidatorTypes = function() {
 							
 								
 							},
-							"Para poder registrarte tenes que ser mayor de 18 años." ],
+							"Para poder registrarte tenes que ser mayor de 18 aï¿½os." ],
 							[
 								"valida_fecha_caduca",
 								function(a) {
@@ -1006,7 +1006,7 @@ Vanadium.setupValidatorTypes = function() {
 									}
 									
 								},
-								"La tarjeta de crédito está caducada." ],
+								"La tarjeta de crï¿½dito estï¿½ caducada." ],
 					[
 							"currency_dollar",
 							function(a) {
@@ -1014,17 +1014,17 @@ Vanadium.setupValidatorTypes = function() {
 										|| /^\$?\-?([1-9]{1}[0-9]{0,2}(\,[0-9]{3})*(\.[0-9]{0,2})?|[1-9]{1}\d*(\.[0-9]{0,2})?|0(\.[0-9]{0,2})?|(\.[0-9]{1,2})?)$/
 												.test(a)
 							},
-							"Por favor, introduzca un importe de $ válida. Por ejemplo, $ 100,00." ],
+							"Por favor, introduzca un importe de $ vï¿½lida. Por ejemplo, $ 100,00." ],
 					[
 							"selection",
 							function(a, b) {
 								return b.options ? b.selectedIndex > 0
 										: !Vanadium.validators_types.empty
 												.test(a)
-							}, "Por favor haga una selección" ],
+							}, "Por favor haga una selecciï¿½n" ],
 					[ "select_op", function(a, b) {
 						return !Vanadium.validators_types.empty.test(a)
-					}, "Por favor haga una selección" ],
+					}, "Por favor haga una selecciï¿½n" ],
 					[ "one_required", function(a, c) {
 						var b = jQuery('input[name="' + c.name + '"]');
 						return some(b, function(d) {
@@ -1056,7 +1056,7 @@ Vanadium.setupValidatorTypes = function() {
 								}
 							},
 							function(a, b) {
-								return '<small>&nbsp&nbsp&nbsp El valor debe ser de al menos <span class="'
+								return '<small>&nbsp&nbsp&nbsp  <img src="../../img/glyphicons/glyphicons_207_remove_2.png" height="15" width="15">  El valor debe ser de al menos <span class="'
 										+ Vanadium.config.message_value_class
 										+ '">'
 										+ b
@@ -1072,11 +1072,11 @@ Vanadium.setupValidatorTypes = function() {
 								}
 							},
 							function(a, b) {
-								return 'El valor debe ser en la mayor de <span class="'
+								return '<small>&nbsp&nbsp&nbsp  <img src="../../img/glyphicons/glyphicons_207_remove_2.png" height="15" width="15">  El valor ingresado debe tener como mÃ¡ximo <span class="'
 										+ Vanadium.config.message_value_class
 										+ '">'
 										+ b
-										+ "</span> caracteres de largo."
+										+ "</span> caracteres."
 							} ],
 					[
 							"same_as",
@@ -1101,7 +1101,7 @@ Vanadium.setupValidatorTypes = function() {
 											+ 'Contrasena'
 											+ "</span>."
 								} else {
-									return "No hay ningún elemento de ejemplo!!"
+									return "No hay ningï¿½n elemento de ejemplo!!"
 								}
 							}, "", function(b) {
 								var a = document.getElementById(b.param);
@@ -1150,13 +1150,13 @@ Vanadium.setupValidatorTypes = function() {
 											+ Vanadium.config.message_value_class
 											+ '">'
 											+ b.toString()
-											+ "</span> patrón."
+											+ "</span> patrï¿½n."
 								} else {
-									return 'parámetro <span class="'
+									return 'parï¿½metro <span class="'
 											+ Vanadium.config.message_value_class
 											+ '">'
 											+ b.toString()
-											+ "</span> no es una expresión regular."
+											+ "</span> no es una expresiï¿½n regular."
 								}
 							} ] ]);
 	if (typeof (VanadiumCustomValidationTypes) !== "undefined"

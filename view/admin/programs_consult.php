@@ -2,7 +2,7 @@
 @$user = $_SESSION['sesion'];
 //session_destroy();
 if (!isset($user) && empty($user)) {
-    header('Location: http://localhost/SIE_V2/view/index.php');
+    header('Location: ../principal/index.php');
 }else{
 ?>
 <html lang="es">
@@ -45,7 +45,6 @@ if (!isset($user) && empty($user)) {
                                     </option>
                                     <?php }?>
                                 </select>
-                                <a href="" class="btn btn-primary span2">Consultar</a>
                         </div><br>
                         <div class="controls controls-row">
                                 <table class="table table-striped table-hover-green well" id="proyectosLocalizacion">
@@ -54,7 +53,7 @@ if (!isset($user) && empty($user)) {
                                             <th><strong>PROGRAMA</strong></th>
                                             <th><strong>ESTADO</strong></th>
                                             <th><strong>PONDERACION</strong></th>
-                                            <th><strong>EDITAR</strong></th>
+                                            <th class="visible-desktop"><strong>EDITAR</strong></th>
                                         </thead>
                                         <tbody id="table_body">
                                                 
@@ -67,11 +66,13 @@ if (!isset($user) && empty($user)) {
         <div class="container">
 		<!--% if (administrator != null){ %-->
 		<div class="row-fluid">
-                    <a href="http://localhost/SIE_V2/view/admin/programs.php" class="btn btn-primary "><img alt="Prev" src="../../img/glyphicons/glyphicons_036_file.png" height="20" width="20"> <strong>NuevO Programa</strong></a>
+                    <a href="programs.php" class="span2 btn btn-primary visible-desktop"><img alt="Prev" src="../../img/glyphicons/glyphicons_036_file.png" height="20" width="20"> <strong>Nuevo Programa</strong></a>
 		</div>
 		<!--% }%-->
 	</div>
 	
+        <br>
+        <?php include_once '../general/_down.php'; ?>
 	
 <!--JavaScript================================================================================================-->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>

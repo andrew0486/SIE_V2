@@ -13,6 +13,6 @@
             <td><?php print $row_prgm['PROGRAM_NAME'] ?></td>
             <td><?php if ($row_prgm['PROGRAM_STATUS'] == 1){ print "ACTIVO";}else{print "INACTIVO";} ?></td>
             <td><?php print $row_prgm['PROGRAM_WEIGHTING'] ?></td>
-            <td><a type="button" href="http://localhost/SIE_V2/view/admin/programs.php?id=<?php print $row_prgm['PROGRAM_ID'] ?>" class="btn btn-primary" title="Editar"><i class="icon-edit"></i></a></td>
+            <td class="visible-desktop"><a type="button" href="../../view/admin/programs.php?id=<?php print $row_prgm['PROGRAM_ID'] ?>" class="btn btn-primary" title="Editar"><i class="icon-edit"></i></a></td>
         </tr>
 <?php   } }?>

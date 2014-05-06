@@ -2,7 +2,7 @@
 @$user = $_SESSION['sesion'];
 //session_destroy();
 if (!isset($user) && empty($user)) {
-    header('Location: http://localhost/SIE_V2/view/index.php');
+    header('Location: ../principal/index.php');
 }else{
 ?>
 <html lang="es">
@@ -24,7 +24,7 @@ if (!isset($user) && empty($user)) {
                     $consulta = new Consulta();
                 ?>	
 	</nav><br><br><br>
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row-fluid">
 			<div class=""></div>
 			<div class="span12">
@@ -88,7 +88,7 @@ if (!isset($user) && empty($user)) {
 						</div>
 					</form>
                                     <div class="">
-                                        <a href="http://localhost/SIE_V2/view/admin/project.php" class="btn btn-primary "><img alt="Prev" src="../../img/glyphicons/glyphicons_144_folder_open.png" height="20" width="20"> <strong>Nuevo Proyecto</strong></a>
+                                        <a href="projectInfo.php" class="btn btn-primary "><img alt="Prev" src="../../img/glyphicons/glyphicons_144_folder_open.png" height="20" width="20"> <strong>Nuevo Proyecto</strong></a>
                                     </div>
 				</div>
                              
@@ -99,7 +99,8 @@ if (!isset($user) && empty($user)) {
 	</div>
 	
 	
-	
+	<br>
+        <?php include_once '../general/_down.php'; ?>
 <!--JavaScript================================================================================================-->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 	<script src="../../js/jquery.js"></script>

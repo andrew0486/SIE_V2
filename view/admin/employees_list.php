@@ -2,7 +2,7 @@
 @$user = $_SESSION['sesion'];
 //session_destroy();
 if (!isset($user) && empty($user)) {
-    header('Location: http://localhost/SIE_V2/view/index.php');
+    header('Location: ../principal/index.php');
 }else{
 ?>
 <!DOCTYPE html>
@@ -42,7 +42,7 @@ if (!isset($user) && empty($user)) {
 						<td><strong>PROFESIÓN</strong></td>
 						<!--% if (administrator != null){ %-->
 						<td><strong>ESTADO</strong></td>
-						<td><strong>EDICIÓN</strong></td>
+                                                <td class="visible-desktop"><strong>EDICIÓN</strong></td>
 						<!--% }%-->
 					</tr>
 				</thead>
@@ -51,7 +51,7 @@ if (!isset($user) && empty($user)) {
                                             require_once '../../controller/database/consultas.php';
                                             $consulta = new Consulta();
                                             $consulta->setConsulta("SELECT * FROM sie.employees
-                                                ORDER BY one_first_name, two_last_name, one_first_name, two_first_name");
+                                                ORDER BY one_last_name, two_last_name, one_first_name, two_first_name");
                                             $employees = $consulta->getConsulta();
                                             
 						while ($reg = mysql_fetch_array($employees)){
@@ -94,7 +94,7 @@ if (!isset($user) && empty($user)) {
                                                             <?php print $estado;?>
 							</td>
 							<td>
-								<a href="http://localhost/SIE_V2/view/admin/employee_edit.php?id=<?php print $reg['DOCUMENT_NUMBER'];?>" class='btn btn-primary btn-small'>Editar</a>
+								<a href="employee_edit.php?id=<?php print $reg['DOCUMENT_NUMBER'];?>" class='btn btn-primary btn-small visible-desktop'>Editar</a>
 							</td -->
 					<!--%
 						} //end for 
@@ -106,12 +106,13 @@ if (!isset($user) && empty($user)) {
 		</div>
 		<!--% if (administrator != null){ %-->
 		<div class="row-fluid">
-                    <a href="http://localhost/SIE_V2/view/admin/employee_edit.php" class="btn btn-primary "><img alt="Prev" src="../../img/glyphicons/glyphicons_006_user_add.png" height="30" width="30"> <strong>Nuevo Funcionario</strong></a>
+                    <a href="employee_edit.php" class="span3 btn btn-primary visible-desktop"><img alt="Prev" src="../../img/glyphicons/glyphicons_006_user_add.png" height="30" width="30"> <strong>Nuevo Usuaario</strong></a>
 		</div>
 		<!--% }%-->
 	</div>
 
-
+        <br>
+        <?php include_once '../general/_down.php'; ?>
 	<!--jsp:include page="_down.jsp"></jsp:include-->
         <script type="text/javascript" src="../../js/jquery.js"></script>
 	<script type="text/javascript" src="../../js/bootstrap.js"></script>

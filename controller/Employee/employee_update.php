@@ -3,15 +3,15 @@
     //echo "ESTE ES EL EMPLEADO ".$idEMP;
     
     //BASIC REFERENCES EMPLOYE
-    $emp_oneFirstName = strtoupper($_POST['oneFirstName']);
-    $emp_twoFirstName = strtoupper($_POST['twoFirstName']);
-    $emp_oneLastName = strtoupper($_POST['oneLastName']);
-    $emp_twoLastName = strtoupper($_POST['twoLastName']);
+    $emp_oneFirstName = trim(strtoupper($_POST['oneFirstName']));
+    $emp_twoFirstName = trim(strtoupper($_POST['twoFirstName']));
+    $emp_oneLastName = trim(strtoupper($_POST['oneLastName']));
+    $emp_twoLastName = trim(strtoupper($_POST['twoLastName']));
     $emp_streetAddress = strtoupper($_POST['streetAddress']);
     $emp_cityResident = strtoupper($_POST['cityResident']);
-    $emp_phoneNumber = strtoupper($_POST['phoneNumber']);
-    $emp_email = $_POST['email'];
-    $emp_documentType = strtoupper($_POST['documentType']);
+    $emp_phoneNumber = trim(strtoupper($_POST['phoneNumber']));
+    $emp_email = trim($_POST['email']);
+    $emp_documentType = trim(strtoupper($_POST['documentType']));
     $emp_documentCity = strtoupper($_POST['documentCity']);
     //$emp_documentNumber = strtoupper($_POST['documentNumber']);
     
@@ -93,5 +93,5 @@
         DOCUMENT_TYPE='$emp_documentType', DOCUMENT_CITY='$emp_documentCity', HIRE_DATE='$emp_hireDate',
         ACTIVE_STATE=$emp_activeState, END_DATE=null WHERE DOCUMENT_NUMBER='$emp_documentNumber'");
     
-    header('Location: http://localhost/SIE_V2/view/admin/employees_list.php');
+    header('Location: ../../view/admin/employees_list.php');
 ?>

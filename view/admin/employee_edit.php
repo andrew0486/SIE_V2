@@ -2,7 +2,7 @@
 @$user = $_SESSION['sesion'];
 //session_destroy();
 if (!isset($user) && empty($user)) {
-    header('Location: http://localhost/SIE_V2/view/index.php');
+    header('Location: ../principal/index.php');
 }else{
 ?>
 <!doctype html>
@@ -92,7 +92,7 @@ if (!isset($user) && empty($user)) {
 									value="<?php if (isset($doc) && !empty($doc)) { print $employ['ONE_LAST_NAME'];}?>"/>	
 								</div>
 								<div class="span6">
-									<input type="text" class="input-block-level" autocomplete="off" id="twoLastName" placeholder="Segundo Apellido" maxlength="45" name="twoLastName" required
+									<input type="text" class="input-block-level" autocomplete="off" id="twoLastName" placeholder="Segundo Apellido" maxlength="45" name="twoLastName"
 									value="<?php if (isset($doc) && !empty($doc)) { print $employ['TWO_LAST_NAME'];}?>"/>	
 								</div>
 							</div>
@@ -375,7 +375,7 @@ if (!isset($user) && empty($user)) {
                                                                     } ?>>Aceptar</button>	
 							</div>
 							<div class="span6">
-                                                            <a href="http://localhost/SIE_V2/view/admin/employees_list.php" class="btn btn-default input-block-level" >Cancelar</a>	
+                                                            <a href="employees_list.php" class="btn btn-default input-block-level" >Cancelar</a>	
 							</div>
 							
 							

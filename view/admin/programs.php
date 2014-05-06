@@ -2,7 +2,7 @@
 @$user = $_SESSION['sesion'];
 //session_destroy();
 if (!isset($user) && empty($user)) {
-    header('Location: http://localhost/SIE_V2/view/index.php');
+    header('Location: ../principal/index.php');
 }else{
 ?>
 <html lang="es">
@@ -82,8 +82,8 @@ if (!isset($user) && empty($user)) {
 								<textarea class="span12" rows="4" style="resize:none" id="program_objective" name="program_objective" placeholder="Objetivo:*" required><?php if (isset($edit_p) && !empty($edit_p)){ print $edit_p['PROGRAM_OBJECTIVE'];} ?></textarea>
 							</div><br>
 							<div class="controls controls-row input-append">
-								<input class="span12" type="text" id="program_weighting" name="program_weighting" placeholder="Ponderación:*" required
-                                                                       value="<?php if (isset($edit_p) && !empty($edit_p)){ print $edit_p['PROGRAM_WEIGHTING'];} ?>">
+								<input class="span12" type="number" min="0.1" max="100" step="0.1" id="program_weighting" name="program_weighting" placeholder="Ponderación:*" required
+                                                                       value="<?php if (isset($edit_p) && !empty($edit_p)){ print $edit_p['PROGRAM_WEIGHTING'];} ?> ">
                                                                 <span class="add-on"> % </span>
 							</div><br><br>
 							<div class="controls controls-row">
@@ -111,7 +111,7 @@ if (!isset($user) && empty($user)) {
                                                                             >Aceptar</button>	
                                                                 </div>
                                                                 <div class="span6">
-                                                                    <a href="http://localhost/SIE_V2/view/admin/programs_consult.php" class="btn btn-default input-block-level" >Cancelar</a>	
+                                                                    <a href="programs_consult.php" class="btn btn-default input-block-level" >Cancelar</a>	
                                                                 </div>
 
 

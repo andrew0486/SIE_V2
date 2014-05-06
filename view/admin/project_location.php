@@ -2,7 +2,7 @@
 @$user = $_SESSION['sesion'];
 //session_destroy();
 if (!isset($user) && empty($user)) {
-    header('Location: index.php');
+    header('Location: ../principal/index.php');
 }else{
 ?>
 <html lang="es">
@@ -64,8 +64,8 @@ if (!isset($user) && empty($user)) {
 
 		</div>
 		<div class="control controls-row">
-                        <a class="btn btn-primary span2 offset4 " type="project" href="http://localhost/SIE_V2/view/admin/project_year.php" onclick="document.localizacion_pr.submit()" value="Siguiente">Siguiente</a>
-                        <a class="btn btn-default span2" href="http://localhost/SIE_V2/view/admin/project.php" value="Cancelar">Cancelar</a>
+                    <a class="btn btn-primary span2 offset4 " type="project" href="project_year.php" onclick="document.localizacion_pr.submit()" value="Siguiente">Siguiente</a>
+                    <a class="btn btn-default span2" href="projectInfo.php" value="Cancelar">Cancelar</a>
                 </div>
 	</div>
 <!--JavaScript================================================================================================-->

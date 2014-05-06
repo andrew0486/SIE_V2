@@ -2,7 +2,7 @@
 @$user = $_SESSION['sesion'];
 //session_destroy();
 if (!isset($user) && empty($user)) {
-    header('Location: index.php');
+    header('Location: ../principal/index.php');
 }else{
 ?>
 <html lang="es">
@@ -92,7 +92,7 @@ if (!isset($user) && empty($user)) {
                                                                             </div><br>
                                                                             <div class="control controls-row">
 										                                            <a class="btn btn-primary span2 offset4 " href="#tab2" data-toggle="tab" onclick="" value="Siguiente">Siguiente</a>
-										                                            <a class="btn btn-default span2" href="http://localhost/SIE_V2/view/principal.php" value="Cancelar">Cancelar</a>
+                                                                                                                            <a class="btn btn-default span2" href="../principal/principal.php" value="Cancelar">Cancelar</a>
 																				</div>
                                                                 </div>
                                                                 <div class="tab-pane" id="tab2">
